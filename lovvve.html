@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>I Love U Lolo ❤️</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    height:100vh;
+    overflow:hidden;
+    background:linear-gradient(135deg,#ff69b4,#ffc0cb);
+    font-family:Arial,sans-serif;
+}
+
+/* الصورة */
+
+.heart-photo{
+    position:absolute;
+    top:42%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    width:320px;
+    height:320px;
+    object-fit:cover;
+
+    clip-path: polygon(
+    50% 100%,
+    0% 60%,
+    0% 25%,
+    25% 0%,
+    50% 20%,
+    75% 0%,
+    100% 25%,
+    100% 60%
+    );
+
+    border:6px solid white;
+    box-shadow:0 0 40px rgba(255,255,255,.8);
+
+    animation:heartbeat 2s infinite;
+    z-index:5;
+}
+
+@keyframes heartbeat{
+
+    0%{
+        opacity:.5;
+        transform:translate(-50%,-50%) scale(.9);
+    }
+
+    50%{
+        opacity:1;
+        transform:translate(-50%,-50%) scale(1.1);
+    }
+
+    100%{
+        opacity:.5;
+        transform:translate(-50%,-50%) scale(.9);
+    }
+
+}
+
+/* النص */
+
+.message{
+    position:absolute;
+    bottom:50px;
+    width:100%;
+    text-align:center;
+    color:white;
+    font-size:55px;
+    font-weight:bold;
+    text-shadow:0 0 20px red;
+    z-index:10;
+}
+
+/* القلوب والقبلات */
+
+.heart,
+.kiss{
+    position:absolute;
+    animation:float linear infinite;
+}
+
+@keyframes float{
+
+    0%{
+        transform:translateY(100vh);
+        opacity:1;
+    }
+
+    100%{
+        transform:translateY(-120vh);
+        opacity:0;
+    }
+
+}
+
+/* زر المفاجأة */
+
+#surpriseBtn{
+    position:absolute;
+    top:20px;
+    right:20px;
+    padding:15px 25px;
+    border:none;
+    border-radius:30px;
+    background:white;
+    color:#ff1493;
+    font-size:18px;
+    cursor:pointer;
+    z-index:100;
+}
+
+/* الرسالة */
+
+.popup{
+    display:none;
+    position:fixed;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    background:white;
+    padding:30px;
+    border-radius:20px;
+    text-align:center;
+    box-shadow:0 0 30px rgba(0,0,0,.3);
+    z-index:1000;
+}
+
+.popup h2{
+    color:#ff1493;
+    margin-bottom:10px;
+}
+
+.popup p{
+    font-size:20px;
+}
+
+</style>
+</head>
+
+<body>
+
+<button id="surpriseBtn">❤️ Surprise</button>
+
+<!-- غير اسم الصورة لو مختلف -->
+<img src="lolo.jpg" class="heart-photo">
+
+<div class="message">
+    ❤️ I Love U Lolo ❤️
+</div>
+
+<div class="popup" id="popup">
+    <h2>💖 You Are My Favorite Person 💖</h2>
+    <p>I Love You Lolo 🌹</p>
+</div>
+
+<script>
+
+/* القلوب والقبلات */
+
+for(let i=0;i<80;i++){
+
+    let heart=document.createElement("div");
+    heart.className="heart";
+    heart.innerHTML="❤️";
+
+    heart.style.left=Math.random()*100+"vw";
+    heart.style.fontSize=(20+Math.random()*40)+"px";
+    heart.style.animationDuration=(4+Math.random()*6)+"s";
+
+    document.body.appendChild(heart);
+
+    let kiss=document.createElement("div");
+    kiss.className="kiss";
+    kiss.innerHTML="💋";
+
+    kiss.style.left=Math.random()*100+"vw";
+    kiss.style.fontSize=(20+Math.random()*40)+"px";
+    kiss.style.animationDuration=(5+Math.random()*6)+"s";
+
+    document.body.appendChild(kiss);
+}
+
+/* المفاجأة */
+
+const popup = document.getElementById("popup");
+const btn = document.getElementById("surpriseBtn");
+
+btn.addEventListener("click", function(event){
+
+    popup.style.display = "block";
+
+    event.stopPropagation();
+
+});
+
+document.addEventListener("click", function(){
+
+    popup.style.display = "none";
+
+});
+
+popup.addEventListener("click", function(event){
+
+    event.stopPropagation();
+
+});
+
+</script>
+
+</body>
+</html>
